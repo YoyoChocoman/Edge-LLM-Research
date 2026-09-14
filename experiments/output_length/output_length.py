@@ -5,7 +5,7 @@ from datetime import datetime
 
 from llama_cpp import Llama
 
-MODEL_PATH = "models/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf"
+MODEL_PATH = "../../models/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf"
 
 OUTPUT_LIMITS = [25, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400]
 RUNS_PER_SETTING = 20
