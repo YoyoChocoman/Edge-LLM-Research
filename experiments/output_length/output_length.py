@@ -9,7 +9,7 @@ MODEL_PATH = "models/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf"
 
 OUTPUT_LIMITS = [25, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400]
 RUNS_PER_SETTING = 20
-RESULTS_FILE = f"experiments/output_length/results/exp_output_length_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+RESULTS_FILE = f"results/exp_output_length_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
 
 # Fixed Prompt
 PROMPT = (
