@@ -94,7 +94,7 @@ def plot_experiment_data(json_path):
     ax2.legend(loc='lower right')
 
     plt.tight_layout()
-    plt.savefig("figure/output.png")
+    plt.savefig("figures/output.png")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plot Output Length Profiling Results with Statistics")

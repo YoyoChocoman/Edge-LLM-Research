@@ -64,7 +64,7 @@ def analyze_chunk_dynamics(json_path):
     plt.ylim(0, y_max)
 
     plt.tight_layout()
-    plt.savefig("figure/tpot_residuals.png")
+    plt.savefig("figures/tpot_residuals.png")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plot Per-Chunk Latency Dynamics")

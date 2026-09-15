@@ -20,7 +20,6 @@ def analyze_token_emission(json_path, model_path, run_idx=0, start_idx=100, end_
     chunks = target_run.get("chunks", [])
 
     print(f"Loading Model for exact Tokenization: {model_path}")
-    # verbose=False 避免洗版
     llm = Llama(model_path=model_path, n_gpu_layers=-1, n_ctx=2048, verbose=False)
 
     print(f"\nAnalyzing Run ID {target_run.get('run_id')} (Window: Chunk {start_idx} to {end_idx})")
@@ -35,21 +34,18 @@ def analyze_token_emission(json_path, model_path, run_idx=0, start_idx=100, end_
         content = chunk.get("content", "")
         cumulative_string += content
 
-        # 使用 Llama 原生 Tokenizer 計算累積字串的真實 Token 數
-        # add_bos=False 避免每次計算都重複加上 Beginning of Sentence token
+        # Calculate the actual number of tokens for an accumulated string using the native Llama tokenizer
+        # add_bos=False avoids repeatedly adding the beginning of sentence token during every calculation.
         current_tokens = len(llm.tokenize(cumulative_string.encode('utf-8'), add_bos=False))
 
-        # 計算邊際 Token 增加量
+        # calculate delta token
         delta_tokens = current_tokens - prev_tokens
 
-        # 計算延遲 (跳過第一個 chunk，因其無前驅時間)
         latency_ms = 0.0
         if i > 0:
             latency_ms = (chunk["timestamp_abs"] - chunks[i-1]["timestamp_abs"]) * 1000.0
 
-        # 只印出觀察區間內的結果
         if start_idx <= i <= end_idx:
-            # 將換行符號替換為可視字元，避免破壞表格排版
             display_content = repr(content)
             print(f"{i:<7} | {latency_ms:<12.2f} | {current_tokens:<12} | {delta_tokens:<10} | {display_content}")
 

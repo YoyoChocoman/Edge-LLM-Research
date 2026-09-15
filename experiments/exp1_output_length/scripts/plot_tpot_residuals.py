@@ -83,7 +83,7 @@ def perform_residual_analysis(json_path):
     ax3.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig("figure/tpot_residuals.png")
+    plt.savefig("figures/tpot_residuals.png")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Perform TPOT Residual Analysis")

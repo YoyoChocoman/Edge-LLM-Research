@@ -27,7 +27,7 @@ In this phase, we focused our quantitative analysis exclusively on observations 
 Using our anomaly detection script (`analyze_anomaly.py`) targeting the window of chunks 100-120, we identified that the spike occurred precisely at **Chunk 108** across all 20 runs. The generated content at this exact moment was consistently the string `' user'` (context: `". In the user's sentence,"`). The latency at this specific chunk spiked to >10.0 ms (with outliers up to 40.45 ms).
 
 #### 4.2 Post-Spike Step-Up
-To verify the post-spike step-up (observation d), we conducted a statistical comparison between a clean pre-spike window (Chunks 53–103) and a clean post-spike window (Chunks 113–163).
+To verify the post-spike step-up (observation d), we conducted a statistical comparison between a clean pre-spike window (Chunks 53–103) and a clean post-spike window (Chunks 113–163). (`spike_analysis.py`)
 
 **Aggregate Statistical Analysis:**
 *   Global P50 Before Spike: **7.3425 ms**
