@@ -23,10 +23,10 @@ Plotting the inter-chunk latency over the generation position revealed a highly 
 ## 4. Deep Dive: The Chunk 108 Anomaly & Step-Up
 In this phase, we focused our quantitative analysis exclusively on observations (c) and (d).
 
-#### 4.1 Anomaly Localization
+### 4.1 Anomaly Localization
 Using our anomaly detection script (`analyze_anomaly.py`) targeting the window of chunks 100-120, we identified that the spike occurred precisely at **Chunk 108** across all 20 runs. The generated content at this exact moment was consistently the string `' user'` (context: `". In the user's sentence,"`). The latency at this specific chunk spiked to >10.0 ms (with outliers up to 40.45 ms).
 
-#### 4.2 Post-Spike Step-Up
+### 4.2 Post-Spike Step-Up
 To verify the post-spike step-up (observation d), we conducted a statistical comparison between a clean pre-spike window (Chunks 53–103) and a clean post-spike window (Chunks 113–163). (`spike_analysis.py`)
 
 **Aggregate Statistical Analysis:**
@@ -35,7 +35,7 @@ To verify the post-spike step-up (observation d), we conducted a statistical com
 *   Step-up Delta: **+0.3442 ms (+4.69%)**
 *   Per-Run Consistency: **20 / 20 runs (100.0%)** demonstrated this latency step-up.
 
-#### 4.3 Token Composition Sanity Check
+### 4.3 Token Composition Sanity Check
 Because streaming chunks do not necessarily correspond one-to-one with generated tokens, we performed an additional tokenization-based sanity check. For each run, the cumulative streamed output was re-tokenized using the same Llama tokenizer (`analyze_token_emission.py`), and the incremental token count associated with each chunk was computed. Around the identified anomaly, Chunk 108 increased the cumulative output token count by 1 token, despite exhibiting substantially elevated latency. In comparison, Chunk 109 increased the cumulative count by 2 tokens while showing a lower latency. This observation suggests that the Chunk 108 spike cannot be readily explained simply by a larger number of output tokens contained in that chunk.
 
 > *This analysis reconstructs token counts from the cumulative streamed text rather than directly instrumenting internal decoder token emissions; therefore, the result is treated as a sanity check rather than a definitive measurement of per-token decoder iterations.*
