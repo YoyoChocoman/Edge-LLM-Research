@@ -30,6 +30,8 @@ We hypothesized that the allocated maximum context size (`n_ctx`) might dictate 
 
 **Conclusion:** The observed spike location is invariant across the tested `n_ctx` configurations.
 
+![Streaming latency across n_ctx settings](figures/nctx_grid_comp.png)
+
 ### 3.2 Spike Location is Invariant to `n_batch`
 We hypothesized that the prompt processing/generation batch size (`n_batch`) might trigger synchronization boundaries. Testing across multiple prompts showed that varying `n_batch` from 128 to 1024 did not shift the spike positions.
 >   The following data only shows the results of Prompt B's first spike
@@ -42,6 +44,8 @@ We hypothesized that the prompt processing/generation batch size (`n_batch`) mig
 | **n_batch: 1024** | 161 | 80 | **241** | 9.67 ms |
 
 **Conclusion:** The observed spike location is invariant across the tested `n_batch` configurations.
+
+![Streaming latency across n_batch settings](figures/nbatch_grid_comp.png)
 
 ### 3.3 Strict 256-Token Periodicity in Long Context
 By extending the generation length to ~1800 chunks, we observed a perfectly repeating pattern of latency spikes.
@@ -79,6 +83,8 @@ In Experiment 4, Flash Attention substantially mitigated the persistent step-up 
 
 **Conclusion:** While Flash Attention substantially suppresses the persistent step-up observed in earlier experiments, it does not eliminate the context-dependent increase in decoding latency. The observed gradual degradation is consistent with increasing computational and memory-access costs associated with attention over a growing KV cache.
 
+
+![Periodic spikes and baseline latency growth during long-context decoding](figures/long_token_latency_plot.png)
 
 ## 4. Secondary Observations and Unresolved Phenomena
 Several secondary behaviors were observed during the long-context experiment. These are documented for completeness but are not treated as primary causal findings.

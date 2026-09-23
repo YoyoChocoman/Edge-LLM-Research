@@ -51,6 +51,8 @@ Enabling Flash Attention did not shift the generation positions at which the maj
 
 Flash Attention therefore did **not appear to change the trigger location** of the observed spikes. The absolute spike magnitude was somewhat lower under FA in Prompts A and B, while remaining almost unchanged in Prompt C. Thus, the intervention affects spike magnitude to some extent, but does not eliminate the event or shift its observed location. This distinction is important: **Flash Attention does not eliminate the transient spike, even though it may modestly reduce its magnitude.**
 
+![Streaming latency with Flash Attention disabled and enabled](figures/fa_comp.png)
+
 ### 3.2 Mitigation of the Post-Spike Step-Up
 In contrast to the persistent spike itself, Flash Attention substantially reduced the persistent latency increase following the first context boundary.
 
@@ -83,6 +85,8 @@ The behavior after this second boundary differed from that observed at the first
 **Observation**: Without Flash Attention, crossing the second boundary was associated with a small decrease in the measured baseline latency. With Flash Attention, this became a small increase.
 
 We document this divergence but do not use it as evidence for the primary Exp4 conclusion. The second-boundary behavior appears qualitatively different from the first-boundary persistent step-up and requires separate investigation. Therefore, the primary intervention result of Exp4 is based on the first boundary, where the FA-OFF/FA-ON difference is consistent across all three prompts.
+
+![Flash Attention comparison aligned by total context across prompts](figures/aligned_comp_6x2.png)
 
 ## 4. Conclusion
 Experiment 4 reveals an important separation between the two latency phenomena observed in Experiment 3.

@@ -20,6 +20,8 @@ Plotting the inter-chunk latency over the generation position revealed a highly 
 *   **d. Post-Spike Step-Up:** Following the spike, the P50 base latency did not return to pre-spike levels; it permanently shifted upwards.
 *   **e. Increased Tail Latency Spread:** The gap between P50 and P95 noticeably widened after the spike, suggesting a heavier tail in the observed latency distribution.
 
+![Per-chunk streaming latency across 20 runs](figures/tpot_residuals.png)
+
 ## 4. Deep Dive: The Chunk 108 Anomaly & Step-Up
 In this phase, we focused our quantitative analysis exclusively on observations (c) and (d).
 

@@ -37,6 +37,8 @@ The empirical data yielded a highly robust linear fit:
 
 **Conclusion 1:** Under the current hardware and workload configuration, the aggregate decoding latency scales highly linearly with the actual number of generated tokens.
 
+![Decode time and TPOT versus output length](figures/output.png)
+
 ### Finding 2: The Breakdown of the Simple TPOT Model
 A naive constant-marginal-cost model assumes that $T_{decode} = T_{fixed} + c \cdot N$. This implies that TPOT should follow:
 $$TPOT = c + \frac{T_{fixed}}{N}$$
@@ -48,6 +50,8 @@ However, our observation contradicts this model:
 - The negative intercept does not represent a physically meaningful fixed latency; rather, it indicates that the fitted linear model should not be extrapolated to $N_{output}=0$
 
 **Conclusion 2:** A simple fixed-overhead + constant marginal decoding-cost model does not adequately explain the observed TPOT behavior in our edge-LLM deployment.
+
+![TPOT model fit and residual analysis](figures/tpot_residuals.png)
 
 ## 4. Discussion & Open Questions
 

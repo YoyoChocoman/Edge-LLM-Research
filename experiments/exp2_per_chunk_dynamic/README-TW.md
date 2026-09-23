@@ -21,6 +21,8 @@
 *   **d. 突刺後的階梯式墊高（Post-Spike Step-Up）：**　在突刺之後，P50 的基準延遲並未回到突刺前的水準；它發生了永久性的向上偏移。
 *   **e. 尾部延遲的分散度增加（Increased Tail Latency Spread）：** 在突刺之後，P50 與 P95 之間的差距明顯拉大，暗示在觀測到的延遲分佈中出現了更厚重的尾部（heavier tail）。
 
+![20 次執行的逐 chunk 串流延遲](figures/tpot_residuals.png)
+
 ## 4. 深度分析：Chunk 108 的異常與階梯式墊高
 
 在本階段，我們將量化分析的焦點專注於觀察結果 (c) 與 (d)。

@@ -37,6 +37,8 @@ $$T_{decode} = \beta_1 N_{output} + \beta_0$$
 
 **結論一：** 在當前的硬體與工作負載配置下，總解碼延遲與實際生成的 token 數量呈現高度的線性縮放關係。
 
+![解碼時間與 TPOT 隨輸出長度的變化](figures/output.png)
+
 ### 發現二：簡易 TPOT 模型的失效
 一個單純的固定邊際成本模型 (constant-marginal-cost model) 假設 $T_{decode} = T_{fixed} + c \cdot N$。這暗示 TPOT 應遵循以下公式：
 $$TPOT = c + \frac{T_{fixed}}{N}$$
@@ -48,6 +50,8 @@ $$TPOT = c + \frac{T_{fixed}}{N}$$
 - 負的截距並不代表具備物理意義的固定延遲；相反地，這指出不應將此線性擬合模型外推 (extrapolate) 至 $N_{output}=0$ 的情況。
 
 **結論二：** 「簡單的固定開銷加上恆定邊際解碼成本」之模型，不足以解釋在我們的邊緣 LLM 部署中所觀察到的 TPOT 行為。
+
+![TPOT 模型擬合與殘差分析](figures/tpot_residuals.png)
 
 ## 4. 討論與未解問題
 

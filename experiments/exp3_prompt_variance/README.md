@@ -22,6 +22,8 @@ We aligned the visualization of inter-chunk latency ($\Delta t_i$) using **Total
 
 ## 3. Observations
 
+![Streaming latency by generation position for three prompts](figures/prompt_variance.png)
+
 ### 3.1 Spike Alignment (`analyze_spike.py`)
 When plotted against Total Context Length, the first persistent transition aligned at the same nominal total-context position across the three evaluated prompts.
 
@@ -32,6 +34,8 @@ When plotted against Total Context Length, the first persistent transition align
 | C_Different_Content | 144          | 97                  | **241**               | 353                 | **497**               |
 
 **Conclusion:** These results are inconsistent with a fixed output-position explanation and are not explained by the visible identity of the generated token in the evaluated prompts. They support nominal total context position as the primary observed controlling variable.
+
+![Streaming latency aligned by nominal total context position](figures/aligned.png)
 
 ### 3.2 Periodicity and The 256-Token Interval
 The distance between the two observed spikes (497 - 241) is exactly **256**.
